@@ -1,0 +1,15 @@
+.light-mode {
+    background: #ffffff;
+    color: #000000;
+}
+
+/* Dark Mode */
+.dark-mode {
+    background: #121212;
+    color: #ffffff;
+}
+
+.auto
+{
+    color: red;
+}
