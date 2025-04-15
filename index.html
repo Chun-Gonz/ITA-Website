@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>  
+        <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+        <title>About me Website</title>
+        <link rel="stylesheet" href="index_css.css">
+    </head>
+    <body>
+            <h1 align="center">About me</h1>
+            <button id="changetheme_button" class="light" onclick="changetheme()">Switch to Dark Mode</button> <!--button to switch from light-mode to dark-mode and vice versa-->
+     
+        <div>
+            <h3 align="center">My name is <span class="auto" style="color: red;"></span></h3><br><br>
+            <p id="short_intro">
+                I am the great conqueror of Indian tea market. I have started my journey as a tea maker since 2010.
+                I have set up my tea stall on the state of Assam and has successfully dominated its tea market in under 2 years. 
+                I was also awarded Tea Legend Award on 2013 for discovering 8 new tea flavours out of which 3 flavours got worldwide recognition. 
+                In 2015, I started my first tea brand called 'Great Tea of Dolly B.' which now is worth 800 crores.
+                <br><br>
+                My vision is to break the limits in the world of tea and to build a platform where everyone have equal chance to enjoy the phenomental and exquisite flavours of tea!
+            </p><br>
+        </div>
+
+        
+        <div id="projects-list">
+            <h2>Projects:</h2>
+        </div>
+    
+        <footer><br><br>
+            <p id="date-time"></p>
+        </footer>
+
+    <script>
+        //implements typing animation on the name "Dolly Bhai".
+        var name = new Typed(".auto", {strings: ["Dolly Bhai The Great"], typeSpeed: 90, backSpeed: 90, loop: true});
+        
+
+
+        //this function contains the logic to switch between light-mode and dark-mode.
+        function changetheme() 
+         {
+            const button = document.getElementById("changetheme_button");
+            const body=document.body;
+
+            if(button.classList.contains("light"))
+                {
+                    button.classList.replace("light", "dark");
+                    button.textContent="Switch to Light Mode";
+                    body.style.background="black";
+                    body.style.color="white";
+                }
+            else
+                {
+                    button.classList.replace("dark", "light");
+                    button.textContent="Switch to Dark Mode";
+                    body.style.background="white";
+                    body.style.color="black";
+                }
+         }
+
+
+
+         //function to display current date and time based on system date & time display format
+         function updateDateTime() {
+            const now = new Date();
+            const formattedDateTime = now.toLocaleString(); // Formats date & time based on user's locale
+            document.getElementById("date-time").textContent = "Current Date & Time: " + formattedDateTime;
+        }
+        updateDateTime(); // Call once to set immediately
+        setInterval(updateDateTime, 1000); // Update every second
+
+
+        //list variable that will contain the projects data
+        const projects = [
+        {
+            title: "Diabetes Prediction System",
+            description: "An application that predicts the chances of diabetes in a patient.",
+            link: "https://example.com/DPS"
+        },
+        {
+            title: "Stock Market Prediction based on news headlines using Natural Language Processing",
+            description: "A webapp that predicts the value of a company stock based on news headlines.",
+            link: "https://example.com/Stock_Market_Prediction"
+        },
+        {
+            title: "Portfolio Website",
+            description: "My personal portfolio to showcase my work and resume.",
+            link: "https://example.com/portfolio"
+        }
+        ];
+
+        //code to dynamically load projects
+        document.addEventListener('DOMContentLoaded', ()=>{
+        const container = document.getElementById("projects-list");
+        projects.forEach((project, index)=> //to loop through each element in the 'projects' list
+            {   
+                const div = document.createElement("div");
+                div.className = "project-element";
+                div.innerHTML = ` 
+                <h3> ${index+1}. ${project.title}</h3>
+                <p>${project.description}</p>
+                <a href="${project.link}">View Project</a>`;
+                container.appendChild(div);
+            });
+        });
+    </script>
+    </body>
+</html>
